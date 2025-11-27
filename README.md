@@ -50,10 +50,10 @@ DevFlow addresses these challenges by providing an intelligent, conversational A
 
 Before setting up DevFlow, ensure you have:
 
-1. **Python 3.8 or higher** installed on your system
-2. **Google API Key** for Gemini API access ([get one here](https://makersuite.google.com/app/apikey))
-3. **GitHub Personal Access Token** with appropriate permissions
-4. **pip** package manager
+1. **Python 3.13 or higher** installed on your system
+2. **Poetry** installed ([installation guide](https://python-poetry.org/docs/#installation))
+3. **Google API Key** for Gemini API access ([get one here](https://makersuite.google.com/app/apikey))
+4. **GitHub Personal Access Token** with appropriate permissions
 
 ### Installation
 
@@ -64,10 +64,18 @@ Before setting up DevFlow, ensure you have:
     cd devflow
     ```
 
-2. Install ADK:
+2. Install dependencies with Poetry:
 
     ```bash
-    pip install google-adk
+    poetry install
+    ```
+
+    This will create a virtual environment and install all dependencies.
+
+3. Activate the virtual environment:
+
+    ```bash
+    $(poetry env activate)
     ```
 
 ### Configuration
@@ -86,6 +94,14 @@ You can run the agent using the `adk` command.
 
 ```bash
 adk run
+```
+
+### Evaluating the Agent
+
+Run the evaluation suite using `pytest`.
+
+```bash
+pytest
 ```
 
 ## Contributing
