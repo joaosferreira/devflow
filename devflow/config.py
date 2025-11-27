@@ -7,7 +7,7 @@ USER_ID = os.getenv("USER_ID", "default_user")
 SESSION_ID = os.getenv("SESSION_ID", "default_session")
 
 # Model configuration
-DEFAULT_MODEL = os.getenv("DEFAULT_MODEL", "gemini-2.5-flash-lite")
+AGENT_MODEL = os.getenv("AGENT_MODEL", "gemini-2.5-flash")
 
 # Retry configuration for API calls
 retry_config = types.HttpRetryOptions(

@@ -1,0 +1,344 @@
+{
+  "eval_set_id": "query_user_github_resources",
+  "name": "Query user's GitHub resources",
+  "description": "Evaluates the agent's ability to retrieve the authenticated user's GitHub username and use it to answer queries about the user's own resources.",
+  "eval_cases": [
+    {
+      "eval_id": "query_user_issues",
+      "conversation": [
+        {
+          "invocation_id": "e-c78e9f8a-d66c-4fb4-9cc9-3c47bc346098",
+          "user_content": {
+            "parts": [
+              {
+                "text": "What are my open issues?"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "You have no open issues."
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "invocation_events": [
+              {
+                "author": "github_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "function_call": {
+                        "id": "adk-50bd82e9-c768-4956-866d-b4c477ae7da2",
+                        "args": {},
+                        "name": "get_me"
+                      }
+                    }
+                  ],
+                  "role": "model"
+                }
+              },
+              {
+                "author": "github_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "function_response": {
+                        "id": "adk-50bd82e9-c768-4956-866d-b4c477ae7da2",
+                        "name": "get_me",
+                        "response": {
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "{\"login\":\"joaosferreira\",\"id\":8233411,\"profile_url\":\"https://github.com/joaosferreira\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/8233411?v=4\",\"details\":{\"name\":\"João\",\"location\":\"Lisbon, Portugal\",\"hireable\":true,\"bio\":\"Software Engineer\",\"public_repos\":1,\"public_gists\":0,\"followers\":6,\"following\":17,\"created_at\":\"2014-07-22T09:12:50Z\",\"updated_at\":\"2025-09-23T12:39:35Z\"}}"
+                            }
+                          ],
+                          "isError": false
+                        }
+                      }
+                    }
+                  ],
+                  "role": "user"
+                }
+              },
+              {
+                "author": "github_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "function_call": {
+                        "id": "adk-22d9790a-ecba-4a9c-93fa-9ec7a41f85ff",
+                        "args": {
+                          "query": "is:open is:issue user:joaosferreira"
+                        },
+                        "name": "search_issues"
+                      }
+                    }
+                  ],
+                  "role": "model"
+                }
+              },
+              {
+                "author": "github_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "function_response": {
+                        "id": "adk-22d9790a-ecba-4a9c-93fa-9ec7a41f85ff",
+                        "name": "search_issues",
+                        "response": {
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "{\"total_count\":0,\"incomplete_results\":false}"
+                            }
+                          ],
+                          "isError": false
+                        }
+                      }
+                    }
+                  ],
+                  "role": "user"
+                }
+              }
+            ]
+          },
+          "creation_timestamp": 1764174821.195089
+        }
+      ],
+      "session_input": {
+        "app_name": "devflow",
+        "user_id": "user"
+      },
+      "creation_timestamp": 1764174975.160414
+    },
+    {
+      "eval_id": "query_user_repositories",
+      "conversation": [
+        {
+          "invocation_id": "e-ed0e8d22-3212-4d7f-ac16-fb4bb90c3c45",
+          "user_content": {
+            "parts": [
+              {
+                "text": "List my repositories."
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "Here are your repositories:\n* devflow"
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "invocation_events": [
+              {
+                "author": "github_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "function_call": {
+                        "id": "adk-fb97094b-c3e4-47f5-9ad6-54c360b42436",
+                        "args": {},
+                        "name": "get_me"
+                      }
+                    }
+                  ],
+                  "role": "model"
+                }
+              },
+              {
+                "author": "github_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "function_response": {
+                        "id": "adk-fb97094b-c3e4-47f5-9ad6-54c360b42436",
+                        "name": "get_me",
+                        "response": {
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "{\"login\":\"joaosferreira\",\"id\":8233411,\"profile_url\":\"https://github.com/joaosferreira\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/8233411?v=4\",\"details\":{\"name\":\"João\",\"location\":\"Lisbon, Portugal\",\"hireable\":true,\"bio\":\"Software Engineer\",\"public_repos\":1,\"public_gists\":0,\"followers\":6,\"following\":17,\"created_at\":\"2014-07-22T09:12:50Z\",\"updated_at\":\"2025-09-23T12:39:35Z\"}}"
+                            }
+                          ],
+                          "isError": false
+                        }
+                      }
+                    }
+                  ],
+                  "role": "user"
+                }
+              },
+              {
+                "author": "github_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "function_call": {
+                        "id": "adk-9d174426-e1d8-4333-823c-ef17c8555a2f",
+                        "args": {
+                          "query": "user:joaosferreira"
+                        },
+                        "name": "search_repositories"
+                      }
+                    }
+                  ],
+                  "role": "model"
+                }
+              },
+              {
+                "author": "github_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "function_response": {
+                        "id": "adk-9d174426-e1d8-4333-823c-ef17c8555a2f",
+                        "name": "search_repositories",
+                        "response": {
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "{\"total_count\":1,\"incomplete_results\":false,\"items\":[{\"id\":1101506910,\"name\":\"devflow\",\"full_name\":\"joaosferreira/devflow\",\"description\":\"Agent for automating software development workflows\",\"html_url\":\"https://github.com/joaosferreira/devflow\",\"language\":\"Python\",\"stargazers_count\":0,\"forks_count\":0,\"open_issues_count\":0,\"updated_at\":\"2025-11-21T19:27:56Z\",\"created_at\":\"2025-11-21T19:17:54Z\",\"private\":false,\"fork\":false,\"archived\":false,\"default_branch\":\"main\"}]}"
+                            }
+                          ],
+                          "isError": false
+                        }
+                      }
+                    }
+                  ],
+                  "role": "user"
+                }
+              }
+            ]
+          },
+          "creation_timestamp": 1764175851.800876
+        }
+      ],
+      "session_input": {
+        "app_name": "devflow",
+        "user_id": "user"
+      },
+      "creation_timestamp": 1764175894.0291672
+    },
+    {
+      "eval_id": "query_user_pull_requests",
+      "conversation": [
+        {
+          "invocation_id": "e-7782002a-d8aa-42c4-a879-844bc491dc7e",
+          "user_content": {
+            "parts": [
+              {
+                "text": "What are my open pull requests?"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "You have no open pull requests."
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "invocation_events": [
+              {
+                "author": "github_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "function_call": {
+                        "id": "adk-1a69e672-6056-4d04-a69c-7299d2498b6b",
+                        "args": {},
+                        "name": "get_me"
+                      }
+                    }
+                  ],
+                  "role": "model"
+                }
+              },
+              {
+                "author": "github_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "function_response": {
+                        "id": "adk-1a69e672-6056-4d04-a69c-7299d2498b6b",
+                        "name": "get_me",
+                        "response": {
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "{\"login\":\"joaosferreira\",\"id\":8233411,\"profile_url\":\"https://github.com/joaosferreira\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/8233411?v=4\",\"details\":{\"name\":\"João\",\"location\":\"Lisbon, Portugal\",\"hireable\":true,\"bio\":\"Software Engineer\",\"public_repos\":1,\"public_gists\":0,\"followers\":6,\"following\":17,\"created_at\":\"2014-07-22T09:12:50Z\",\"updated_at\":\"2025-09-23T12:39:35Z\"}}"
+                            }
+                          ],
+                          "isError": false
+                        }
+                      }
+                    }
+                  ],
+                  "role": "user"
+                }
+              },
+              {
+                "author": "github_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "function_call": {
+                        "id": "adk-8365b6fa-f9e0-4143-9f4d-61da1aac7fe3",
+                        "args": {
+                          "query": "author:joaosferreira is:open"
+                        },
+                        "name": "search_pull_requests"
+                      }
+                    }
+                  ],
+                  "role": "model"
+                }
+              },
+              {
+                "author": "github_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "function_response": {
+                        "id": "adk-8365b6fa-f9e0-4143-9f4d-61da1aac7fe3",
+                        "name": "search_pull_requests",
+                        "response": {
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "{\"total_count\":0,\"incomplete_results\":false}"
+                            }
+                          ],
+                          "isError": false
+                        }
+                      }
+                    }
+                  ],
+                  "role": "user"
+                }
+              }
+            ]
+          },
+          "creation_timestamp": 1764242841.249427
+        }
+      ],
+      "session_input": {
+        "app_name": "devflow",
+        "user_id": "user"
+      },
+      "creation_timestamp": 1764242900.641186
+    }
+  ],
+  "creation_timestamp": 1764174967.439805
+}

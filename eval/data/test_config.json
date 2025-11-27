@@ -1,0 +1,31 @@
+{
+  "criteria": {
+    "rubric_based_tool_use_quality_v1": {
+      "threshold": 1.0,
+      "judge_model_options": {
+        "judge_model": "gemini-2.5-flash",
+        "num_samples": 3
+      },
+      "rubrics": [
+        {
+          "rubric_id": "call_get_me_first",
+          "rubric_content": {
+            "text_property": "The agent calls the get_me tool before calling any other tool when aswering queries about the user's own resources."
+          }
+        },
+        {
+          "rubric_id": "pass_username_to_tool",
+          "rubric_content": {
+            "text_property": "The agent passes the GitHub username retrieved from get_me to the next tool in the chain."
+          }
+        },
+        {
+          "rubric_id": "use_correct_tool",
+          "rubric_content": {
+            "text_property": "The agent uses the appropriate GitHub tool for the query."
+          }
+        }
+      ]
+    }
+  }
+}

@@ -25,3 +25,6 @@ env/
 dist/
 build/
 *.egg-info/
+
+# Agent Development Kit
+.adk/
