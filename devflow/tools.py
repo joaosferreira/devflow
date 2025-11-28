@@ -2,6 +2,7 @@ import os
 
 from google.adk.tools import AgentTool, google_search, McpToolset
 from google.adk.tools.mcp_tool import StreamableHTTPConnectionParams
+from google.adk.tools.tool_context import ToolContext
 
 github_token = os.getenv("GITHUB_PERSONAL_ACCESS_TOKEN")
 if not github_token:
@@ -23,3 +24,15 @@ try:
     )
 except Exception as e:
     raise e
+
+
+def store_github_username(username: str, tool_context: ToolContext):
+    """
+    Store the GitHub username in the session state.
+
+    Args:
+        username: The GitHub username to store
+    """
+    tool_context.state["user:github_username"] = username
+
+    return {"status": "success"}

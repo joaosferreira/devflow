@@ -1,6 +1,6 @@
 [project]
 name = "devflow"
-version = "0.1.0"
+version = "0.1.1"
 description = "AI agent for streamlining software development workflows"
 readme = "README.md"
 authors = [
