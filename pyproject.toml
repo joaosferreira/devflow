@@ -1,6 +1,6 @@
 [project]
 name = "devflow"
-version = "0.1.1"
+version = "0.2.0"
 description = "AI agent for streamlining software development workflows"
 readme = "README.md"
 authors = [
@@ -10,6 +10,8 @@ requires-python = ">=3.13,<4.0"
 dependencies = [
     "google-adk>=1.19.0",
     "google-genai>=1.52.0",
+    "litellm>=1.80.5",
+    "pydantic-settings>=2.12.0",
     "python-dotenv>=1.2.1",
 ]
 

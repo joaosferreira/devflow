@@ -24,7 +24,7 @@ These challenges result in:
 
 ## Solution
 
-DevFlow addresses these challenges by providing an intelligent, conversational AI assistant that integrates seamlessly with development tools. The solution leverages Google's Agent Development Kit (ADK) and Gemini language models to:
+DevFlow addresses these challenges by providing an intelligent, conversational AI assistant that integrates seamlessly with development tools. The solution leverages Google's Agent Development Kit (ADK) to:
 
 1. **Automate Task Creation**: Generate Jira tickets and GitHub issues from natural language descriptions, extracting relevant information and formatting it appropriately.
 
@@ -52,7 +52,7 @@ Before setting up DevFlow, ensure you have:
 
 1. **Python 3.13 or higher** installed on your system
 2. **Poetry** installed ([installation guide](https://python-poetry.org/docs/#installation))
-3. **Google API Key** for Gemini API access ([get one here](https://makersuite.google.com/app/apikey))
+3. **Google API Key** for Gemini models ([get here](https://makersuite.google.com/app/apikey)) or **OpenAI API Key** ([or here](https://platform.openai.com/api-keys))
 4. **GitHub Personal Access Token** with appropriate permissions
 
 ### Installation
@@ -87,6 +87,8 @@ GOOGLE_GENAI_USE_VERTEXAI=FALSE
 GOOGLE_API_KEY=your_google_api_key
 GITHUB_PERSONAL_ACCESS_TOKEN=your_github_token
 ```
+
+You can also use OpenAI models by setting `OPENAI_API_KEY` and `AGENT_MODEL` (e.g., `gpt-4.1-mini`).
 
 ### Running the Agent
 

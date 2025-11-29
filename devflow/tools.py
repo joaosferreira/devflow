@@ -1,22 +1,15 @@
-import os
-
 from google.adk.tools import AgentTool, google_search, McpToolset
 from google.adk.tools.mcp_tool import StreamableHTTPConnectionParams
 from google.adk.tools.tool_context import ToolContext
 
-github_token = os.getenv("GITHUB_PERSONAL_ACCESS_TOKEN")
-if not github_token:
-    raise ValueError(
-        "GITHUB_PERSONAL_ACCESS_TOKEN environment variable is not set. "
-        "Please set it in your .env file or environment."
-    )
+from .config import agent_config
 
 try:
     github_tools = McpToolset(
         connection_params=StreamableHTTPConnectionParams(
             url="https://api.githubcopilot.com/mcp/",
             headers={
-                "Authorization": f"Bearer {github_token}",
+                "Authorization": f"Bearer {agent_config.github_personal_access_token}",
                 "X-MCP-Toolsets": "default",
                 "X-MCP-Readonly": "true",
             },
