@@ -1,6 +1,7 @@
-from google.adk.agents.llm_agent import Agent
+from google.adk.agents import Agent
 from google.adk.models import Gemini
 from google.adk.models.lite_llm import LiteLlm
+from google.adk.tools import AgentTool
 
 from .config import agent_config, retry_config
 from .tools import github_tools, store_github_username
@@ -15,14 +16,33 @@ else:
 github_agent = Agent(
     name="github_agent",
     model=model,
-    instruction="""You are a GitHub assistant that helps users interact with their GitHub account.
+    instruction=f"""You are a GitHub assistant that helps users interact with GitHub.
     
-    You have access to GitHub tools that allow you to search for repositories, issues, pull requests, retrieve user information, etc.
-    When the user asks about their own resources, first check if the login username is stored in the session state.
-    If the login username is not in the sessiom state, use the get_me tool to retrieve the user's GitHub information and store it using the store_github_username tool.
-    Use the stored GitHub username to search for the user's resources using the appropriate tools.
-    Chain as many tools as necessary to retrieve the information needed to answer the user's query.""",
+    You have access to GitHub tools that allow you to search for GitHub resources (e.g., repositories, issues, pull requests).
+    
+    Task:
+    Help the user by answering questions about GitHub resources.
+    Use GitHub tools to retrieve information relevant to the user's query.
+    
+    Infer from the conversation history if the user's query is about their own GitHub resources, and if so, use the GitHub username stored in context when calling other tools.
+    If the username is not in context, use the get_me tool to retrieve the user's GitHub login information, and store the GitHub username using the store_github_username tool.""",
     tools=[github_tools, store_github_username],
 )
 
-root_agent = github_agent
+
+coordinator_agent = Agent(
+    name="coordinator_agent",
+    model=model,
+    instruction="""You are a coordinator agent that routes requests to specialized agent tools.
+    
+    You have access to other agent tools that allow you to get answers from specialized agents.
+    
+    Task:
+    Route user requests to the appropriate specialized agent tool.
+    
+    For GitHub-related queries, call the github_agent tool.""",
+    tools=[AgentTool(agent=github_agent)],
+)
+
+
+root_agent = coordinator_agent
